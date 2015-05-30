@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-public class ToastUtils {
+public class ToastUtil {
 	public static void Short(Context context,@NonNull Object obj){
 		Toast.makeText(context, obj.toString(), Toast.LENGTH_SHORT).show();
 	}
