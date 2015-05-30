@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -83,16 +82,14 @@ public class ArcMenu extends ViewGroup implements OnClickListener {
 
 		for (int i = 0; i < count; i++) {
 			int attr = ta.getIndex(i);
-			switch (attr) {
-			case R.styleable.ArcMenu_radius:
+			
+			if (attr == R.styleable.ArcMenu_radius) {
 				radius = (int) ta.getDimension(attr, TypedValue.applyDimension(
 						TypedValue.COMPLEX_UNIT_DIP, RADIUS, getResources()
 								.getDisplayMetrics()));
-				break;
-			case R.styleable.ArcMenu_position:
+			}else if (attr == R.styleable.ArcMenu_position) {
 				int pos = ta.getInt(attr, POS_RIGHT_BOTTOM);
 				position = getPosition(pos);
-				break;
 			}
 		}
 

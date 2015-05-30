@@ -6,30 +6,18 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * ½â¾öviewpagerÉèÖÃ¸ß¶ÈÎªwrap_contentÎŞĞ§µÄÎÊÌâ
+ * è‡ªå®šä¹‰ViewPagerè§£å†³layout_heightä¸ºwrap_contentæ— æ•ˆçš„é—®é¢˜
  */
 public class WrapContentHeightViewPager extends ViewPager {
 
 
-	/**
-	 * Constructor
-	 *
-	 * @param context the context
-	 */
 	public WrapContentHeightViewPager(Context context) {
 		super(context);
 	}
 
-	/**
-	 * Constructor
-	 *
-	 * @param context the context
-	 * @param attrs the attribute set
-	 */
 	public WrapContentHeightViewPager(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
