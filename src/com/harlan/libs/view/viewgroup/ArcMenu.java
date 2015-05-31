@@ -82,12 +82,12 @@ public class ArcMenu extends ViewGroup implements OnClickListener {
 
 		for (int i = 0; i < count; i++) {
 			int attr = ta.getIndex(i);
-			
+
 			if (attr == R.styleable.ArcMenu_radius) {
 				radius = (int) ta.getDimension(attr, TypedValue.applyDimension(
 						TypedValue.COMPLEX_UNIT_DIP, RADIUS, getResources()
 								.getDisplayMetrics()));
-			}else if (attr == R.styleable.ArcMenu_position) {
+			} else if (attr == R.styleable.ArcMenu_position) {
 				int pos = ta.getInt(attr, POS_RIGHT_BOTTOM);
 				position = getPosition(pos);
 			}

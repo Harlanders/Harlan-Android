@@ -5,17 +5,17 @@ import android.util.Log;
 import com.harlan.libs.BuildConfig;
 
 /**
- * 自动获取Tag
+ * Log Manager,自动获取Tag
  * 
  * @author Harlan
  * @data 2015年5月30日 18:42:45
  */
 public final class Logger {
 
+	private static boolean DEBUG = BuildConfig.DEBUG;
+
 	private Logger() {
 	}
-
-	private static boolean DEBUG = BuildConfig.DEBUG;
 
 	private static String getTag() {
 		StackTraceElement stackTrace = Thread.currentThread().getStackTrace()[4];

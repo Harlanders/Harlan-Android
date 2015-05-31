@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.harlan.libs.R;
-import com.harlan.libs.utils.ToastUtil;
 import com.harlan.libs.view.viewgroup.ArcMenu;
 import com.harlan.libs.view.viewgroup.ArcMenu.OnItemClickListener;
 
@@ -21,7 +20,6 @@ public class ArcMenuActivity extends Activity {
 			
 			@Override
 			public void onClick(View view, int position) {
-				ToastUtil.Short(getApplicationContext(), view.toString() + ":" + position);	
 			}
 		});
 	}
