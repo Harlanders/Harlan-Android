@@ -13,7 +13,7 @@ import com.harlan.libs.core.Harlan;
  */
 public class Toastor {
 	private static Toast toast;
-	private static Context context;
+	private static Context context = Harlan.getContext();
 
 	private Toastor() {
 	}
@@ -33,23 +33,15 @@ public class Toastor {
 		toast.show();
 	}
 
-	private static void setContext() {
-		if (context == null)
-			context = Harlan.getContext();
-	}
-
 	public static void showShort(Object obj) {
-		setContext();
 		showShort(context, obj);
 	}
 
 	public static void showLong(Object obj) {
-		setContext();
 		showLong(context, obj);
 	}
 
 	public static void showTest() {
-		setContext();
 		showTest(context);
 	}
 
