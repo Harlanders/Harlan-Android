@@ -4,8 +4,6 @@ import java.text.DecimalFormat;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import android.util.Log;
-
 public class Dater {
 	// 倒计时 CountDownTimer
 
@@ -123,22 +121,15 @@ public class Dater {
 	 * @return
 	 */
 	public static boolean compare(Dater dater1, Dater dater2) {
-
-		Log.i("Dater", dater1.toString());
-		Log.i("Dater", dater2.toString());
-
 		if (dater2.getDaterYear() < dater1.getDaterYear()) {
-			Log.i("Dater", 1 + "");
 			return false;
 		}
 
 		if (dater2.getDaterYear() == dater1.getDaterYear()) {
 			if (dater2.getDaterMonth() < dater1.getDaterMonth()) {
-				Log.i("Dater", 2 + "");
 				return false;
 			} else if (dater2.getDaterMonth() == dater1.getDaterMonth()) {
 				if (dater2.getDaterDay() <= dater1.getDaterDay()) {
-					Log.i("Dater", 3 + "");
 					return false;
 				}
 			}
@@ -155,7 +146,7 @@ public class Dater {
 		long dater1Millis = getMillis(dater1);
 		long dater2Millis = getMillis(dater2);
 		long millis = Math.abs(dater1Millis - dater2Millis);
-		double days = (millis / 1000 / 3600 / 24);
+		double days = millis / 1000 / 3600 / 24;
 		switch (type) {
 		case YEAR:
 			return Double.parseDouble(new DecimalFormat("0.0").format(days));

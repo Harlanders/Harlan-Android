@@ -3,6 +3,7 @@ package com.harlan.libs.view.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.SparseArray;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,29 +11,22 @@ import android.widget.TextView;
 
 public class ViewHolder {
 
-	private static int mPosition;
-	private final SparseArray<View> views;
+	private SparseArray<View> views;
 	private View convertView;
 
-	// private View mConvertView;
-
-	private ViewHolder(Context context, View convertView, ViewGroup parent,
-			int layoutId) {
-		// this.convertView = convertView;
+	private ViewHolder(Context context, ViewGroup parent, int layoutId) {
 		views = new SparseArray<View>();
-		// mConvertView = LayoutInflater.from(context).inflate(layoutId, parent,
-		// false);
-		convertView = View.inflate(context, layoutId, null);
+		convertView = LayoutInflater.from(context).inflate(layoutId, parent,
+				false);
 		convertView.setTag(this);
 	}
 
 	public static ViewHolder get(Context context, View convertView,
 			ViewGroup parent, int layoutId) {
-		if (convertView == null) {
-			return new ViewHolder(context, convertView, parent, layoutId);
-		} else {
+		if (convertView == null)
+			return new ViewHolder(context, parent, layoutId);
+		else
 			return (ViewHolder) convertView.getTag();
-		}
 
 	}
 
@@ -49,10 +43,6 @@ public class ViewHolder {
 
 	public View getConverView() {
 		return convertView;
-	}
-
-	public int getPosition() {
-		return mPosition;
 	}
 
 	/**

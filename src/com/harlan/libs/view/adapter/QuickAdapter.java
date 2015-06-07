@@ -42,5 +42,5 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 		return holder.getConverView();
 	}
 
-	protected abstract void conver(ViewHolder holder, T data);
+	protected abstract void conver(ViewHolder holder, T t);
 }
