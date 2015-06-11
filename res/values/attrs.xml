@@ -2,13 +2,13 @@
 <resources>
 
     <declare-styleable name="ArcMenu">
-        <attr name="position">
-           <enum name="left_top" value="0"/>
-           <enum name="left_bottom" value="1"/>
-           <enum name="right_top" value="2"/>
-           <enum name="right_bottom" value="3"/>
+        <attr name="ArcMenu_Position">
+           <enum name="ArcMenu_Left_top" value="0"/>
+           <enum name="ArcMenu_Left_bottom" value="1"/>
+           <enum name="ArcMenu_Right_top" value="2"/>
+           <enum name="ArcMenu_Right_bottom" value="3"/>
         </attr>
-        <attr name="radius" format="dimension"></attr>
+        <attr name="ArcMenu_Radius" format="dimension"></attr>
     </declare-styleable>
 
 </resources>
