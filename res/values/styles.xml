@@ -1,20 +1,83 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="wrap_content">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="match_parent">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="w_0_h_wrap">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="w_wrap_h_match">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="w_match_h_wrap">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="ll_w_wrap_h_match_horizontal" parent="@style/w_wrap_h_match">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ll_w_match_h_wrap_horizontal" parent="@style/w_match_h_wrap">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ll_w_wrap_h_match_vertical" parent="@style/w_wrap_h_match">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ll_w_match_h_wrap_vertical" parent="@style/w_match_h_wrap">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ll_wrap_content_vertical" parent="@style/wrap_content">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ll_wrap_content_horizontal" parent="@style/wrap_content">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ll_match_parent_vertical" parent="@style/match_parent">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ll_match_parent_horizontal" parent="@style/match_parent">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="line_vertical">
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 
 </resources>

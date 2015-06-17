@@ -1,4 +1,4 @@
-package com.harlan.libs.view;
+package com.harlan.libs.ui.view;
 
 import android.support.v4.app.Fragment;
 
@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
  * @author Administrator
  *
  */
-public abstract class ViewPagerFragment extends Fragment {
+public abstract class LazyLoadFragment extends Fragment {
 	/** Fragment当前状态是否可见 */
 	protected boolean isVisible;
 

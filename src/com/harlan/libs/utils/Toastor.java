@@ -24,9 +24,14 @@ public class Toastor {
 	 * @param duration
 	 */
 	private static void show(Context context, Object obj, int duration) {
-		if (toast == null)
+		if (obj == null) {
+			Logger.w("the obj cannot null");
+			return;
+		}
+
+		if (toast == null) {
 			toast = Toast.makeText(context, obj.toString(), duration);
-		else {
+		} else {
 			toast.setDuration(duration);
 			toast.setText(obj.toString());
 		}
@@ -56,4 +61,5 @@ public class Toastor {
 	public static void showTest(Context context) {
 		show(context, "测试", Toast.LENGTH_SHORT);
 	}
+
 }

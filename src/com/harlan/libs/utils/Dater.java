@@ -1,38 +1,12 @@
 package com.harlan.libs.utils;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class Dater {
 	// 倒计时 CountDownTimer
-
-	private int year;
-	private int month;
-	private int day;
-
-	public Dater(int year, int month, int day) {
-		this.year = year;
-		this.month = month;
-		this.day = day;
-	}
-
-	public int getDaterYear() {
-		return year;
-	}
-
-	public int getDaterMonth() {
-		return month;
-	}
-
-	public int getDaterDay() {
-		return day;
-	}
-
-	@Override
-	public String toString() {
-		return getYMD(year, month, day);
-	}
 
 	public static final String YMD = "%04d-%02d-%02d";
 	public static final String YM = "%04d-%02d";
@@ -41,8 +15,37 @@ public class Dater {
 		YEAR, MONTH, DAY
 	}
 
+	public enum DaterType {
+		TIMER
+	}
+
+	private int year;
+	private int month;
+	private int day;
+
+	public Dater(int year, int month, int day) {// 年月日
+		this.year = year;
+		this.month = month;
+		this.day = day;
+	}
+
+	private int hour;
+	private int minute;
+	private int seconds;
+
+	public Dater(int hour, int minute, DaterType t) {
+		this.hour = hour;// 时分秒
+		this.minute = minute;
+	}
+
+	public Dater(int hour, int minute, int seconds, DaterType t) {
+		this.hour = hour;// 时分秒
+		this.minute = minute;
+		this.seconds = seconds;
+	}
+
 	public static String getCurrentYMD(String format) {
-		return getYMD(getYear(), getMonth(), getDay());
+		return getYMD(getCurrentYear(), getCurrentMonth(), getCurrentDay());
 	}
 
 	public static String getCurrentYMD() {
@@ -50,7 +53,7 @@ public class Dater {
 	}
 
 	public static Dater getCurrentDater() {
-		return new Dater(getYear(), getMonth(), getDay());
+		return new Dater(getCurrentYear(), getCurrentMonth(), getCurrentDay());
 	}
 
 	public static String getYMD(int year, int month, int day) {
@@ -62,23 +65,34 @@ public class Dater {
 		return ymd;
 	}
 
+	public static int getWeekOfMonth(int year, int month, int day) {
+		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
+		return gc.get(Calendar.WEEK_OF_MONTH);
+	}
+
+	public static int getCurrentWeekOfMonth() {
+		GregorianCalendar gc = new GregorianCalendar(getCurrentYear(),
+				getCurrentMonth() - 1, getCurrentDay());
+		return gc.get(Calendar.WEEK_OF_MONTH);
+	}
+
 	public static String getYM(String format) {
-		return String.format(format, getYear(), getMonth());
+		return String.format(format, getCurrentYear(), getCurrentMonth());
 	}
 
 	public static String getYM() {
 		return getYM(YM);
 	}
 
-	public static int getYear() {
+	public static int getCurrentYear() {
 		return new GregorianCalendar().get(GregorianCalendar.YEAR);
 	}
 
-	public static int getMonth() {
+	public static int getCurrentMonth() {
 		return new GregorianCalendar().get(GregorianCalendar.MONTH) + 1;
 	}
 
-	public static int getDay() {
+	public static int getCurrentDay() {
 		return new GregorianCalendar().get(GregorianCalendar.DATE);
 	}
 
@@ -203,7 +217,7 @@ public class Dater {
 	 * @return
 	 */
 	public static int getCurrentMonthDays() {
-		return getMonthDays(getYear(), getMonth());
+		return getMonthDays(getCurrentYear(), getCurrentMonth());
 	}
 
 	/**
@@ -226,4 +240,77 @@ public class Dater {
 		String format = "%02d:%02d:%02d";
 		return String.format(format, hour, minute, seconds);
 	}
+
+	public static String timerFormat(int hour, int minute, int seconds,
+			String format) {
+		return String.format(format, hour, minute, seconds);
+	}
+
+	public static final String TIMER_FORMAT = "%02d:%02d";
+
+	public static String timerFormat(int hour, int minute) {
+		return String.format(TIMER_FORMAT, hour, minute);
+	}
+
+	public int getDaterYear() {
+		return year;
+	}
+
+	public int getDaterMonth() {
+		return month;
+	}
+
+	public int getDaterDay() {
+		return day;
+	}
+
+	public int getHour() {
+		return hour;
+	}
+
+	public int getMinute() {
+		return minute;
+	}
+
+	public int getSeconds() {
+		return seconds;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+
+	public void setSeconds(int seconds) {
+		this.seconds = seconds;
+	}
+
+	@Override
+	@Deprecated
+	public String toString() {
+		return getYMD(year, month, day);
+	}
+
+	public String toDaterString() {
+		return getYMD(year, month, day);
+	}
+
+	// public String toTimerString() {
+	// return "";
+	// }
 }

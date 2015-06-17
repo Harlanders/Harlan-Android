@@ -1,4 +1,4 @@
-package com.harlan.libs.view.adapter;
+package com.harlan.libs.ui.adapter;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = ViewHolder.get(context, convertView, parent,
-				layoutId);
+				layoutId, position);
 		conver(holder, getItem(position));
 		return holder.getConverView();
 	}

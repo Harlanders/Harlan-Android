@@ -1,10 +1,11 @@
-package com.harlan.libs.view.adapter;
+package com.harlan.libs.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,21 +14,26 @@ public class ViewHolder {
 
 	private SparseArray<View> views;
 	private View convertView;
+	private int position;
 
-	private ViewHolder(Context context, ViewGroup parent, int layoutId) {
+	private ViewHolder(Context context, ViewGroup parent, int layoutId,
+			int position) {
 		views = new SparseArray<View>();
+		this.position = position;
 		convertView = LayoutInflater.from(context).inflate(layoutId, parent,
 				false);
 		convertView.setTag(this);
 	}
 
 	public static ViewHolder get(Context context, View convertView,
-			ViewGroup parent, int layoutId) {
-		if (convertView == null)
-			return new ViewHolder(context, parent, layoutId);
-		else
-			return (ViewHolder) convertView.getTag();
-
+			ViewGroup parent, int layoutId, int position) {
+		if (convertView == null) {
+			return new ViewHolder(context, parent, layoutId, position);
+		} else {
+			ViewHolder holder = (ViewHolder) convertView.getTag();
+			holder.position = position;
+			return holder;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -43,6 +49,10 @@ public class ViewHolder {
 
 	public View getConverView() {
 		return convertView;
+	}
+
+	public int getPosition() {
+		return position;
 	}
 
 	/**
@@ -85,4 +95,9 @@ public class ViewHolder {
 		return this;
 	}
 
+	public ViewHolder setOnClickListener(int viewId, OnClickListener listener) {
+		View view = getView(viewId);
+		view.setOnClickListener(listener);
+		return this;
+	}
 }

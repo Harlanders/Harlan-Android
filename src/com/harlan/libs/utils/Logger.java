@@ -37,7 +37,9 @@ public final class Logger {
 	}
 
 	public static void i(String msgName, Object msg) {
-		i(msgName + " = " + msg.toString());
+		if (DEBUG) {
+			Log.i(getTag(), msgName + " = " + msg.toString());
+		}
 	}
 
 	public static void d(Object msg) {
@@ -47,7 +49,9 @@ public final class Logger {
 	}
 
 	public static void d(String msgName, Object msg) {
-		d(msgName + " = " + msg.toString());
+		if (DEBUG) {
+			Log.d(getTag(), msgName + " = " + msg.toString());
+		}
 	}
 
 	public static void w(Object msg) {
@@ -57,7 +61,9 @@ public final class Logger {
 	}
 
 	public static void w(String msgName, Object msg) {
-		w(msgName + " = " + msg.toString());
+		if (DEBUG) {
+			Log.w(getTag(), msgName + " = " + msg.toString());
+		}
 	}
 
 	public static void e(Object msg) {
@@ -67,7 +73,9 @@ public final class Logger {
 	}
 
 	public static void e(String msgName, Object msg) {
-		e(msgName + " = " + msg.toString());
+		if (DEBUG) {
+			Log.e(getTag(), msgName + " = " + msg.toString());
+		}
 	}
 
 	public static void v(Object msg) {
@@ -77,6 +85,8 @@ public final class Logger {
 	}
 
 	public static void v(String msgName, Object msg) {
-		v(msgName + " = " + msg.toString());
+		if (DEBUG) {
+			Log.v(getTag(), msgName + " = " + msg.toString());
+		}
 	}
 }
