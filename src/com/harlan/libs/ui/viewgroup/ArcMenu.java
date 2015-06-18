@@ -83,11 +83,11 @@ public class ArcMenu extends ViewGroup implements OnClickListener {
 		for (int i = 0; i < count; i++) {
 			int attr = ta.getIndex(i);
 
-			if (attr == R.styleable.ArcMenu_radius) {
+			if (attr == R.styleable.ArcMenu_ArcMenu_Radius) {
 				radius = (int) ta.getDimension(attr, TypedValue.applyDimension(
 						TypedValue.COMPLEX_UNIT_DIP, RADIUS, getResources()
 								.getDisplayMetrics()));
-			} else if (attr == R.styleable.ArcMenu_position) {
+			} else if (attr == R.styleable.ArcMenu_ArcMenu_Position) {
 				int pos = ta.getInt(attr, POS_RIGHT_BOTTOM);
 				position = getPosition(pos);
 			}
@@ -138,7 +138,7 @@ public class ArcMenu extends ViewGroup implements OnClickListener {
 		int cl;
 		int ct;
 
-		for (int i = 0; i < count - 1; i++) {
+		for (int i = 0; i < (count - 1); i++) {
 			cl = (int) (radius * Math.sin(alpha * i));
 			ct = (int) (radius * Math.cos(alpha * i));
 
@@ -147,13 +147,13 @@ public class ArcMenu extends ViewGroup implements OnClickListener {
 			int height = view.getMeasuredHeight();
 			int width = view.getMeasuredWidth();
 
-			if (position == Position.LEFT_BOTTOM
-					|| position == Position.RIGHT_BOTTOM) {
+			if ((position == Position.LEFT_BOTTOM)
+					|| (position == Position.RIGHT_BOTTOM)) {
 				ct = getMeasuredHeight() - ct - height;
 			}
 
-			if (position == Position.RIGHT_TOP
-					|| position == Position.RIGHT_BOTTOM) {
+			if ((position == Position.RIGHT_TOP)
+					|| (position == Position.RIGHT_BOTTOM)) {
 				cl = getMeasuredWidth() - cl - width;
 			}
 			view.layout(cl, ct, cl + width, ct + height);
@@ -200,22 +200,23 @@ public class ArcMenu extends ViewGroup implements OnClickListener {
 
 	private void toggleMenu(int duration) {
 		int count = getChildCount();
-		for (int i = 0; i < count - 1; i++) {
+		for (int i = 0; i < (count - 1); i++) {
 			final View view = getChildAt(i + 1);
 			view.setVisibility(View.VISIBLE);
 
-			int cl = (int) (radius * Math.sin(Math.PI / 2 / (count - 2) * i));
-			int ct = (int) (radius * Math.cos(Math.PI / 2 / (count - 2) * i));
+			int cl = (int) (radius * Math.sin((Math.PI / 2 / (count - 2)) * i));
+			int ct = (int) (radius * Math.cos((Math.PI / 2 / (count - 2)) * i));
 
 			int xflag = 1;
 			int yflag = 1;
 
-			if (position == Position.LEFT_TOP
-					|| position == Position.LEFT_BOTTOM) {
+			if ((position == Position.LEFT_TOP)
+					|| (position == Position.LEFT_BOTTOM)) {
 				xflag = -1;
 			}
 
-			if (position == Position.LEFT_TOP || position == Position.RIGHT_TOP) {
+			if ((position == Position.LEFT_TOP)
+					|| (position == Position.RIGHT_TOP)) {
 				yflag = -1;
 			}
 
@@ -271,8 +272,9 @@ public class ArcMenu extends ViewGroup implements OnClickListener {
 			view.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if (onItemClickListener != null)
+					if (onItemClickListener != null) {
 						onItemClickListener.onClick(view, pos);
+					}
 
 					menuItemAnim(pos - 1);
 					changeStatus();
@@ -284,7 +286,7 @@ public class ArcMenu extends ViewGroup implements OnClickListener {
 	}
 
 	private void menuItemAnim(int pos) {
-		for (int i = 0; i < getChildCount() - 1; i++) {
+		for (int i = 0; i < (getChildCount() - 1); i++) {
 
 			View childView = getChildAt(i + 1);
 			if (i == pos) {

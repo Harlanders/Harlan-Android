@@ -5,6 +5,10 @@ import android.support.v4.app.Fragment;
 /**
  * ViewPager和Fragment同时使用，防止预加载
  * 
+ * <p>
+ * Do not use {@link #lazyLoad()} in your first fragment,it will be call before
+ * {@link #onCreateView()}
+ * 
  * @author Administrator
  *
  */

@@ -76,12 +76,12 @@ public class Dater {
 		return gc.get(Calendar.WEEK_OF_MONTH);
 	}
 
-	public static String getYM(String format) {
+	public static String getCurrentYM(String format) {
 		return String.format(format, getCurrentYear(), getCurrentMonth());
 	}
 
-	public static String getYM() {
-		return getYM(YM);
+	public static String getCurrentYM() {
+		return getCurrentYM(YM);
 	}
 
 	public static int getCurrentYear() {
@@ -94,6 +94,14 @@ public class Dater {
 
 	public static int getCurrentDay() {
 		return new GregorianCalendar().get(GregorianCalendar.DATE);
+	}
+
+	public String getDaterYM() {
+		return getDaterYM(YM);
+	}
+
+	public String getDaterYM(String format) {
+		return String.format(format, year, month);
 	}
 
 	/**

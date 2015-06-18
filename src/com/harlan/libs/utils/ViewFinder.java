@@ -167,12 +167,14 @@ public class ViewFinder {
 	 * 
 	 * @param id
 	 * @param listener
+	 * @return
 	 * @return view registered with listener
 	 */
-	public View onClick(final int id, final OnClickListener listener) {
+	public <V extends View> V onClick(final int id,
+			final OnClickListener listener) {
 		View clickable = find(id);
 		clickable.setOnClickListener(listener);
-		return clickable;
+		return (V) clickable;
 	}
 
 	public RadioButton radioButton(final int id, final OnClickListener listener) {
