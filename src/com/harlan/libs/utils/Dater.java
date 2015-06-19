@@ -8,6 +8,7 @@ import java.util.Locale;
 public class Dater {
 	// 倒计时 CountDownTimer
 
+	public static final String TIMER_FORMAT = "%02d:%02d";
 	public static final String YMD = "%04d-%02d-%02d";
 	public static final String YM = "%04d-%02d";
 
@@ -22,16 +23,15 @@ public class Dater {
 	private int year;
 	private int month;
 	private int day;
+	private int hour;
+	private int minute;
+	private int seconds;
 
 	public Dater(int year, int month, int day) {// 年月日
 		this.year = year;
 		this.month = month;
 		this.day = day;
 	}
-
-	private int hour;
-	private int minute;
-	private int seconds;
 
 	public Dater(int hour, int minute, DaterType t) {
 		this.hour = hour;// 时分秒
@@ -44,18 +44,42 @@ public class Dater {
 		this.seconds = seconds;
 	}
 
+	/**
+	 * 根据格式输出当前时间年月日
+	 * 
+	 * @param format
+	 * @return
+	 */
 	public static String getCurrentYMD(String format) {
 		return getYMD(getCurrentYear(), getCurrentMonth(), getCurrentDay());
 	}
 
+	/**
+	 * 输出当前时间xxxx-xx-xx
+	 * 
+	 * @return
+	 */
 	public static String getCurrentYMD() {
 		return getCurrentYMD(YMD);
 	}
 
+	/**
+	 * 获取当前时间的dater
+	 * 
+	 * @return
+	 */
 	public static Dater getCurrentDater() {
 		return new Dater(getCurrentYear(), getCurrentMonth(), getCurrentDay());
 	}
 
+	/**
+	 * 根据输入年月日输出xxxx-xx-xx
+	 * 
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @return
+	 */
 	public static String getYMD(int year, int month, int day) {
 		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
 		String ymd = String.format(Locale.getDefault(), YMD,
@@ -65,46 +89,102 @@ public class Dater {
 		return ymd;
 	}
 
+	/**
+	 * 获取当月日期所在周
+	 * 
+	 * @return
+	 */
+	public int getWeekOfMonth() {
+		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
+		return gc.get(Calendar.WEEK_OF_MONTH);
+	}
+
+	/**
+	 * 获取当月日期所在周
+	 * 
+	 * @return
+	 */
 	public static int getWeekOfMonth(int year, int month, int day) {
 		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
 		return gc.get(Calendar.WEEK_OF_MONTH);
 	}
 
+	/**
+	 * 获取当前月日期所在周
+	 * 
+	 * @return
+	 */
 	public static int getCurrentWeekOfMonth() {
 		GregorianCalendar gc = new GregorianCalendar(getCurrentYear(),
 				getCurrentMonth() - 1, getCurrentDay());
 		return gc.get(Calendar.WEEK_OF_MONTH);
 	}
 
+	/**
+	 * 输出当前时间xxxx-xx
+	 * 
+	 * @return
+	 */
 	public static String getCurrentYM(String format) {
 		return String.format(format, getCurrentYear(), getCurrentMonth());
 	}
 
+	/**
+	 * 输出当前时间xxxx-xx
+	 * 
+	 * @return
+	 */
 	public static String getCurrentYM() {
 		return getCurrentYM(YM);
 	}
 
+	/**
+	 * 获取当前时间年份
+	 * 
+	 * @return
+	 */
 	public static int getCurrentYear() {
 		return new GregorianCalendar().get(GregorianCalendar.YEAR);
 	}
 
+	/**
+	 * 获取当前时间月份
+	 * 
+	 * @return
+	 */
 	public static int getCurrentMonth() {
 		return new GregorianCalendar().get(GregorianCalendar.MONTH) + 1;
 	}
 
+	/**
+	 * 获取当前时间日期
+	 * 
+	 * @return
+	 */
 	public static int getCurrentDay() {
 		return new GregorianCalendar().get(GregorianCalendar.DATE);
 	}
 
+	/**
+	 * 获取格式为xxxx-xx的年月
+	 * 
+	 * @return
+	 */
 	public String getDaterYM() {
 		return getDaterYM(YM);
 	}
 
+	/**
+	 * 获取年月
+	 * 
+	 * @return
+	 */
 	public String getDaterYM(String format) {
 		return String.format(format, year, month);
 	}
 
 	/**
+	 * 根据类型和偏移值计算日期
 	 * 
 	 * @param year
 	 * @param month
@@ -220,6 +300,109 @@ public class Dater {
 	}
 
 	/**
+	 * 获取指定年月的天数
+	 * 
+	 * @param year
+	 * @param month
+	 * @return
+	 */
+	public int getDaterMonthDays() {
+		GregorianCalendar gc = new GregorianCalendar(getDaterYear(),
+				getDaterMonth() - 1, 1);
+		gc.roll(GregorianCalendar.DATE, -1);
+		return gc.get(GregorianCalendar.DATE);
+	}
+
+	/**
+	 * 增加周数
+	 */
+	public void addWeek(int offset) {
+		GregorianCalendar gc = new GregorianCalendar(getDaterYear(),
+				getDaterMonth() - 1, getDaterDay());
+		gc.add(Calendar.WEEK_OF_YEAR, offset);
+		setDater(gc.get(Calendar.YEAR), gc.get(Calendar.MONTH) + 1,
+				gc.get(Calendar.DATE));
+		Logger.i("addWeek", year, month, day);
+	}
+
+	/**
+	 * 增加1周
+	 */
+	public void addOneWeek() {
+		addWeek(1);
+	}
+
+	/**
+	 * 后退1周
+	 */
+	public void backOneWeek() {
+		addWeek(-1);
+	}
+
+	/**
+	 * 设置日期
+	 * 
+	 * @param year
+	 * @param month
+	 * @param day
+	 */
+	private void setDater(int year, int month, int day) {
+		setYear(year);
+		setMonth(month);
+		setDay(day);
+	}
+
+	/**
+	 * 获取当前周的星期天天数
+	 * 
+	 * @return
+	 */
+	public static int getCurrentSundayOfWeek() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		return gc.get(Calendar.DATE);
+	}
+
+	/**
+	 * 获取下一周星期天天数
+	 * 
+	 * @return
+	 */
+	public static int getNextSundayOfWeek() {
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		gc.add(Calendar.WEEK_OF_YEAR, 1);
+		return gc.get(Calendar.DATE);
+	}
+
+	/**
+	 * 获取当前日期所在周的星期天天数
+	 * 
+	 * @return
+	 */
+	public int getDaterSundayOfWeek() {
+		GregorianCalendar gc = new GregorianCalendar(getDaterYear(),
+				getDaterMonth() - 1, getDaterDay());
+		gc.add(Calendar.WEEK_OF_YEAR, 1);// 一周
+		gc.add(Calendar.WEEK_OF_YEAR, -1);// 一周
+		gc.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		return gc.get(Calendar.DATE);
+	}
+
+	/**
+	 * 获取当前日期下一周的星期天天数
+	 * 
+	 * @return
+	 */
+	public int getDaterNextSundayOfWeek() {
+		GregorianCalendar gc = new GregorianCalendar(getDaterYear(),
+				getDaterMonth() - 1, getDaterDay());
+		gc.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		gc.add(Calendar.WEEK_OF_YEAR, 1);
+		return gc.get(Calendar.DATE);
+	}
+
+	/**
 	 * 获取当前年月的天数
 	 * 
 	 * @return
@@ -249,12 +432,108 @@ public class Dater {
 		return String.format(format, hour, minute, seconds);
 	}
 
+	/**
+	 * 获取当前周所有日期
+	 * 
+	 * @return
+	 */
+	public static int[] getCurrentDaysOfWeek() {
+		int[] days = new int[7];
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		gc.add(Calendar.DAY_OF_MONTH, -1);
+
+		for (int i = 0; i < 7; i++) {
+			gc.add(Calendar.DAY_OF_MONTH, 1);
+			days[i] = gc.get(Calendar.DAY_OF_MONTH);
+		}
+		return days;
+	}
+
+	/**
+	 * 获取指定日期所在周所有日期
+	 * 
+	 * @return
+	 */
+	public static int[] getDaysOfWeek(int year, int month, int day) {
+		int[] days = new int[7];
+		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
+		gc.get(Calendar.DAY_OF_WEEK);// 不能删除
+		gc.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		gc.add(Calendar.DAY_OF_MONTH, -1);
+
+		for (int i = 0; i < 7; i++) {
+			gc.add(Calendar.DAY_OF_MONTH, 1);
+			days[i] = gc.get(Calendar.DAY_OF_MONTH);
+		}
+		return days;
+	}
+
+	/**
+	 * 获取指定日期所在周所有日期
+	 * 
+	 * @return
+	 */
+	public int[] getSpecialDaysOfWeek() {
+		int[] days = new int[7];
+		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
+		gc.get(Calendar.DAY_OF_WEEK);// 不能删除
+		gc.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		gc.add(Calendar.DAY_OF_MONTH, -1);
+
+		for (int i = 0; i < 7; i++) {
+			gc.add(Calendar.DAY_OF_MONTH, 1);
+			if (gc.get(Calendar.MONTH) != (month - 1)) {
+				days[i] = -1;
+			} else {
+				days[i] = gc.get(Calendar.DAY_OF_MONTH);
+			}
+		}
+		return days;
+	}
+
+	/**
+	 * 获取日期在一年中所在周数
+	 * 
+	 * @return
+	 */
+	public int getDaterWeekOfYear() {
+		return getWeekOfYear(year, month - 1, day);
+	}
+
+	/**
+	 * 获取指定日期在一年中所在周数
+	 * 
+	 * @return
+	 */
+	public static int getWeekOfYear(int year, int month, int day) {
+		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
+		return gc.get(Calendar.WEEK_OF_YEAR);
+	}
+
+	/**
+	 * 获取当前日期在一年中所在周数
+	 * 
+	 * @return
+	 */
+	public static int getCurrentWeekOfYear() {
+		GregorianCalendar gc = new GregorianCalendar();
+		return gc.get(Calendar.WEEK_OF_YEAR);
+	}
+
+	/**
+	 * 获取当前日期所在周所有日期
+	 * 
+	 * @return
+	 */
+	public int[] getDaterDaysOfWeek() {
+		return getDaysOfWeek(getDaterYear(), getDaterMonth() - 1, getDaterDay());
+	}
+
 	public static String timerFormat(int hour, int minute, int seconds,
 			String format) {
 		return String.format(format, hour, minute, seconds);
 	}
-
-	public static final String TIMER_FORMAT = "%02d:%02d";
 
 	public static String timerFormat(int hour, int minute) {
 		return String.format(TIMER_FORMAT, hour, minute);
@@ -306,12 +585,6 @@ public class Dater {
 
 	public void setSeconds(int seconds) {
 		this.seconds = seconds;
-	}
-
-	@Override
-	@Deprecated
-	public String toString() {
-		return getYMD(year, month, day);
 	}
 
 	public String toDaterString() {

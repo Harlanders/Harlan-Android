@@ -42,6 +42,12 @@ public final class Logger {
 		}
 	}
 
+	public static void i(String msgName, Object... msg) {
+		if (DEBUG) {
+			Log.i(getTag(), msgName + " = " + msg.toString());
+		}
+	}
+
 	public static void d(Object msg) {
 		if (DEBUG) {
 			Log.d(getTag(), msg.toString());

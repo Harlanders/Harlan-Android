@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.harlan.libs.utils.TextViewUtil;
+
 public class ViewHolder {
 
 	private SparseArray<View> views;
@@ -62,9 +64,9 @@ public class ViewHolder {
 	 * @param text
 	 * @return
 	 */
-	public ViewHolder setText(int viewId, String text) {
+	public ViewHolder setText(int viewId, Object text) {
 		TextView view = getView(viewId);
-		view.setText(text);
+		TextViewUtil.setText(view, text);
 		return this;
 	}
 

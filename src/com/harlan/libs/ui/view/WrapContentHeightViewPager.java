@@ -11,7 +11,7 @@ import android.view.View;
 public class WrapContentHeightViewPager extends ViewPager {
 
 	public WrapContentHeightViewPager(Context context) {
-		super(context);
+		this(context, null);
 	}
 
 	public WrapContentHeightViewPager(Context context, AttributeSet attrs) {
