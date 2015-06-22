@@ -3,8 +3,6 @@ package com.harlan.libs.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.harlan.libs.core.Harlan;
-
 /**
  * Toast Manager
  * 
@@ -13,7 +11,6 @@ import com.harlan.libs.core.Harlan;
  */
 public class Toastor {
 	private static Toast toast;
-	private static Context context = Harlan.getContext();
 
 	private Toastor() {
 	}
@@ -36,18 +33,6 @@ public class Toastor {
 			toast.setText(obj.toString());
 		}
 		toast.show();
-	}
-
-	public static void showShort(Object obj) {
-		showShort(context, obj);
-	}
-
-	public static void showLong(Object obj) {
-		showLong(context, obj);
-	}
-
-	public static void showTest() {
-		showTest(context);
 	}
 
 	public static void showShort(Context context, Object obj) {

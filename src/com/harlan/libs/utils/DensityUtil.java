@@ -4,8 +4,8 @@ import android.util.TypedValue;
 
 import com.harlan.libs.core.Harlan;
 
-public class DensityUtils {
-	private DensityUtils() {
+public class DensityUtil {
+	private DensityUtil() {
 	}
 
 	/**
