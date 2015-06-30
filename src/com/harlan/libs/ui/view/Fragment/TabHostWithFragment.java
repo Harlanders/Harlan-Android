@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.view;
+package com.harlan.libs.ui.view.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 
 /**
  * 使用TabHost管理Fragment
- * 
- * @author Administrator
- *
  */
 public abstract class TabHostWithFragment extends Fragment {
 

@@ -1,7 +1,10 @@
-package com.harlan.libs.ui.view;
+package com.harlan.libs.ui.view.GridView;
 
 import android.widget.GridView;
 
+/**
+ * 无法滑动的GridView
+ */
 public class NoScrollGridView extends GridView {
 	public NoScrollGridView(android.content.Context context,
 			android.util.AttributeSet attrs) {

@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.view;
+package com.harlan.libs.ui.view.Fragment;
 
 import android.support.v4.app.Fragment;
 
@@ -8,9 +8,6 @@ import android.support.v4.app.Fragment;
  * <p>
  * Do not use {@link #lazyLoad()} in your first fragment,it will be call before
  * {@link #onCreateView()}
- * 
- * @author Administrator
- *
  */
 public abstract class LazyLoadFragment extends Fragment {
 	/** Fragment当前状态是否可见 */

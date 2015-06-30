@@ -1,9 +1,12 @@
-package com.harlan.libs.ui.view;
+package com.harlan.libs.ui.view.ListView;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
 
+/**
+ * 无法滑动的ListView
+ */
 public class NoScrollListView extends ListView {
 	public NoScrollListView(Context context) {
 		super(context);

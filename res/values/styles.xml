@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -31,6 +31,12 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="w_match_h_0">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 
     <style name="w_wrap_h_match">
@@ -73,6 +79,10 @@
 
     <style name="ll_match_parent_horizontal" parent="@style/match_parent">
         <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ll_w_match_h_0_vertical" parent="@style/w_match_h_0">
+        <item name="android:orientation">vertical</item>
     </style>
 
     <style name="line_vertical">

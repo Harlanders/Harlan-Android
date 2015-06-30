@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.adapter;
+package com.harlan.libs.ui.adapter.ViewPager;
 
 import java.util.List;
 
@@ -7,6 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * 无限滚动ViewPager的Adapter
+ * 
+ * @author Administrator
+ *
+ * @param <V>
+ */
 public class EndlessPagerAdapter<V extends View> extends PagerAdapter {
 
 	private List<V> views;
@@ -43,5 +50,4 @@ public class EndlessPagerAdapter<V extends View> extends PagerAdapter {
 	public List<V> getViews() {
 		return views;
 	}
-
 }

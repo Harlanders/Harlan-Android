@@ -2,6 +2,9 @@ package com.harlan.libs.core;
 
 import android.content.Context;
 
+/**
+ * @author Harlan
+ */
 public class Harlan {
 
 	/**
@@ -11,9 +14,10 @@ public class Harlan {
 	private static String appName = "Harlan";
 
 	public static Context getContext() {
-		if (context == null)
+		if (context == null) {
 			throw new NullPointerException(
 					"initialize Harlan context in application");
+		}
 		return context;
 	}
 

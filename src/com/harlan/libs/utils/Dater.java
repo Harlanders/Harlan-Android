@@ -1,6 +1,7 @@
 package com.harlan.libs.utils;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -11,6 +12,7 @@ public class Dater {
 	public static final String TIMER_FORMAT = "%02d:%02d";
 	public static final String YMD = "%04d-%02d-%02d";
 	public static final String YM = "%04d-%02d";
+	public static final String YW = "%04d-%02d";
 
 	public enum Type {
 		YEAR, MONTH, DAY
@@ -184,6 +186,24 @@ public class Dater {
 	}
 
 	/**
+	 * 获取格式为xxxx-xx的年周
+	 * 
+	 * @return
+	 */
+	public String getDaterYW() {
+		return getDaterYW(YW);
+	}
+
+	/**
+	 * 获取年周
+	 * 
+	 * @return
+	 */
+	public String getDaterYW(String format) {
+		return String.format(format, year, getDaterWeekOfYear());
+	}
+
+	/**
 	 * 根据类型和偏移值计算日期
 	 * 
 	 * @param year
@@ -261,6 +281,22 @@ public class Dater {
 	}
 
 	/**
+	 * 比较两个Dater是否相等
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Dater) {
+			Dater dater2 = (Dater) o;
+			if ((getDaterYear() == dater2.getDaterYear())
+					&& (getDaterMonth() == dater2.getDaterMonth())
+					&& (getDaterDay() == dater2.getDaterDay())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * 根据类型计算两个日期差值
 	 * 
 	 * @return
@@ -315,28 +351,35 @@ public class Dater {
 
 	/**
 	 * 增加周数
+	 * 
+	 * @return
 	 */
-	public void addWeek(int offset) {
+	public Dater addWeek(int offset) {
 		GregorianCalendar gc = new GregorianCalendar(getDaterYear(),
 				getDaterMonth() - 1, getDaterDay());
 		gc.add(Calendar.WEEK_OF_YEAR, offset);
 		setDater(gc.get(Calendar.YEAR), gc.get(Calendar.MONTH) + 1,
 				gc.get(Calendar.DATE));
 		Logger.i("addWeek", year, month, day);
+		return this;
 	}
 
 	/**
 	 * 增加1周
+	 * 
+	 * @return
 	 */
-	public void addOneWeek() {
-		addWeek(1);
+	public Dater addOneWeek() {
+		return addWeek(1);
 	}
 
 	/**
 	 * 后退1周
+	 * 
+	 * @return
 	 */
-	public void backOneWeek() {
-		addWeek(-1);
+	public Dater backOneWeek() {
+		return addWeek(-1);
 	}
 
 	/**
@@ -346,7 +389,7 @@ public class Dater {
 	 * @param month
 	 * @param day
 	 */
-	private void setDater(int year, int month, int day) {
+	public void setDater(int year, int month, int day) {
 		setYear(year);
 		setMonth(month);
 		setDay(day);
@@ -447,6 +490,7 @@ public class Dater {
 			gc.add(Calendar.DAY_OF_MONTH, 1);
 			days[i] = gc.get(Calendar.DAY_OF_MONTH);
 		}
+		Logger.i(Arrays.toString(days));
 		return days;
 	}
 
@@ -493,12 +537,32 @@ public class Dater {
 	}
 
 	/**
+	 * 获取指定日期所在周所有日期
+	 * 
+	 * @return
+	 */
+	public Dater[] getDatersOfWeek() {
+		Dater[] daters = new Dater[7];
+		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
+		gc.get(Calendar.DAY_OF_WEEK);// 不能删除
+		gc.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		gc.add(Calendar.DAY_OF_MONTH, -1);
+
+		for (int i = 0; i < 7; i++) {
+			gc.add(Calendar.DAY_OF_MONTH, 1);
+			daters[i] = new Dater(gc.get(Calendar.YEAR),
+					gc.get(Calendar.MONTH) + 1, gc.get(Calendar.DATE));
+		}
+		return daters;
+	}
+
+	/**
 	 * 获取日期在一年中所在周数
 	 * 
 	 * @return
 	 */
 	public int getDaterWeekOfYear() {
-		return getWeekOfYear(year, month - 1, day);
+		return getWeekOfYear(year, month, day);
 	}
 
 	/**
@@ -527,14 +591,30 @@ public class Dater {
 	 * @return
 	 */
 	public int[] getDaterDaysOfWeek() {
-		return getDaysOfWeek(getDaterYear(), getDaterMonth() - 1, getDaterDay());
+		return getDaysOfWeek(getDaterYear(), getDaterMonth(), getDaterDay());
 	}
 
+	/**
+	 * 按指定格式获取时分秒字符串
+	 * 
+	 * @param hour
+	 * @param minute
+	 * @param seconds
+	 * @param format
+	 * @return
+	 */
 	public static String timerFormat(int hour, int minute, int seconds,
 			String format) {
 		return String.format(format, hour, minute, seconds);
 	}
 
+	/**
+	 * 按默认格式获取时分秒
+	 * 
+	 * @param hour
+	 * @param minute
+	 * @return 23：59：59 e.g.
+	 */
 	public static String timerFormat(int hour, int minute) {
 		return String.format(TIMER_FORMAT, hour, minute);
 	}
@@ -591,7 +671,20 @@ public class Dater {
 		return getYMD(year, month, day);
 	}
 
-	// public String toTimerString() {
-	// return "";
-	// }
+	/**
+	 * 字符串转换Dater
+	 * 
+	 * @param ymd
+	 *            "1999-12-31"
+	 * @return
+	 */
+	public static Dater YMD2Dater(String ymd) {
+		try {
+			String[] date = ymd.split("-");
+			return new Dater(Integer.valueOf(date[0]),
+					Integer.valueOf(date[1]), Integer.valueOf(date[2]));
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

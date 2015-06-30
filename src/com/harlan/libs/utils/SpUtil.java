@@ -5,6 +5,12 @@ import android.content.SharedPreferences;
 
 import com.harlan.libs.core.Harlan;
 
+/**
+ * Ealisy use SharedPreferences
+ * 
+ * @author Harlan
+ *
+ */
 public class SpUtil {
 	private static SharedPreferences sp = Harlan.getContext()
 			.getSharedPreferences(Harlan.getAppName(), Context.MODE_PRIVATE);

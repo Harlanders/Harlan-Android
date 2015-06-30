@@ -4,26 +4,27 @@ import android.text.Html;
 import android.text.Spanned;
 import android.widget.TextView;
 
+/**
+ * Ealisy use TextView,if <b>TextView</b> or <b>Text</b> is null,it will output
+ * log msg
+ * 
+ * @author Harlan
+ */
 public class TextViewUtil {
 	public static void setText(TextView tv, Object text) {
-		if ((tv == null) || (text == null)) {
-			Logger.i(tv.toString() + "or text cannont be null");
-			return;
+		if (check(tv, text)) {
+			tv.setText(text.toString());
 		}
-		tv.setText(text.toString());
 	}
 
 	public static void setText(TextView tv, Spanned text) {
-		if ((tv == null) || (text == null)) {
-			Logger.i(tv.toString() + "or text cannont be null");
-			return;
+		if (check(tv, text)) {
+			tv.setText(text);
 		}
-		tv.setText(text);
 	}
 
 	/**
-	 * 
-	 * for instance (共计<font color=\"#ffffff\">123</font>车次)
+	 * 设置 for instance (共计<font color=\"#ffffff\">123</font>车次)
 	 * 
 	 * @param tv
 	 * @param text
@@ -42,5 +43,27 @@ public class TextViewUtil {
 		Spanned s = Html.fromHtml("(" + prefix + "<font color=\"" + color
 				+ "\">" + text.toString() + "</font>" + suffix + ")");
 		setText(tv, s);
+	}
+
+	/**
+	 * 设置TextView颜色后显示文字
+	 * 
+	 * @param tv
+	 * @param text
+	 * @param color
+	 */
+	public static void setColorText(TextView tv, Object text, int color) {
+		if (check(tv, text)) {
+			tv.setTextColor(color);
+			tv.setText(text.toString());
+		}
+	}
+
+	private static boolean check(TextView tv, Object text) {
+		if ((tv == null) || (text == null)) {
+			Logger.i(tv.toString() + "or text cannont be null");
+			return false;
+		}
+		return true;
 	}
 }

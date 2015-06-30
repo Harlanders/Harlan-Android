@@ -19,11 +19,7 @@ import android.view.animation.TranslateAnimation;
 import com.harlan.libs.R;
 
 /**
- * 
- * @author Harlan
- * 
- *         2015年5月17日09:34:39
- *
+ * 卫星菜单
  */
 public class ArcMenu extends ViewGroup implements OnClickListener {
 

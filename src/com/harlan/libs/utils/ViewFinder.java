@@ -118,6 +118,22 @@ public class ViewFinder {
 		return find(id);
 	}
 
+	public ViewPager viewPager(int id, OnPageChangeListener listener) {
+		return viewPager(id, listener, null);
+	}
+
+	public ViewPager viewPager(int id, FragmentPagerAdapter adapter) {
+		return viewPager(id, null, adapter);
+	}
+
+	public ViewPager viewPager(final int id,
+			final OnPageChangeListener listener, FragmentPagerAdapter adapter) {
+		ViewPager vp = find(id);
+		vp.setOnPageChangeListener(listener);
+		vp.setAdapter(adapter);
+		return vp;
+	}
+
 	/**
 	 * Get compound button with id
 	 * 
@@ -177,24 +193,10 @@ public class ViewFinder {
 		return (V) clickable;
 	}
 
-	public RadioButton radioButton(final int id, final OnClickListener listener) {
+	public RadioButton radioButton(int id, OnClickListener listener) {
 		RadioButton rb = find(id);
 		rb.setOnClickListener(listener);
 		return rb;
-	}
-
-	public ViewPager viewPager(final int id, final OnPageChangeListener listener) {
-		ViewPager vp = find(id);
-		vp.setOnPageChangeListener(listener);
-		return vp;
-	}
-
-	public ViewPager viewPager(final int id,
-			final OnPageChangeListener listener, FragmentPagerAdapter adapter) {
-		ViewPager vp = find(id);
-		vp.setOnPageChangeListener(listener);
-		vp.setAdapter(adapter);
-		return vp;
 	}
 
 	/**
