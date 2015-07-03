@@ -4,6 +4,8 @@ import android.content.Context;
 
 /**
  * @author Harlan
+ * 
+ * @note 这里应该使用构造者模式
  */
 public class Harlan {
 

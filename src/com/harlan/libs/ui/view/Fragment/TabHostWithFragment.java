@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * 使用TabHost管理Fragment
+ * 使用FragmentTabHost管理Fragment
  */
 public abstract class TabHostWithFragment extends Fragment {
 
@@ -15,15 +15,17 @@ public abstract class TabHostWithFragment extends Fragment {
 
 	public abstract int getLayoutId();
 
-	public abstract void initialize(View view);
+	public abstract void initView(View view);
+
+	public abstract void initData();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		if (view == null) {
 			view = inflater.inflate(getLayoutId(), container, false);
-
-			initialize(view);
+			initView(view);
+			initData();
 		}
 
 		ViewGroup parent = (ViewGroup) view.getParent();
