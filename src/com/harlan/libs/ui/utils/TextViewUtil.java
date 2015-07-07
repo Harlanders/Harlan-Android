@@ -1,4 +1,6 @@
-package com.harlan.libs.utils;
+package com.harlan.libs.ui.utils;
+
+import com.harlan.libs.utils.Logger;
 
 import android.text.Html;
 import android.text.Spanned;

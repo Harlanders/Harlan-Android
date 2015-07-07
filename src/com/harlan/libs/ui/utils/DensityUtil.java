@@ -1,4 +1,4 @@
-package com.harlan.libs.utils;
+package com.harlan.libs.ui.utils;
 
 import android.util.TypedValue;
 

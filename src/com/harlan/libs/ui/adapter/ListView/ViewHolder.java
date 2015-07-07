@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.harlan.libs.utils.TextViewUtil;
+import com.harlan.libs.ui.utils.TextViewUtil;
 
 public class ViewHolder {
 
