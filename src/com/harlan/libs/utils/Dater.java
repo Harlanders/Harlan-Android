@@ -264,18 +264,16 @@ public class Dater {
 	 * 
 	 * @return
 	 */
-	public static double differ(Dater dater1, Dater dater2, Type type) {
-		long dater1Millis = getMillis(dater1);
-		long dater2Millis = getMillis(dater2);
-		long millis = Math.abs(dater1Millis - dater2Millis);
-		double days = millis / 1000 / 3600 / 24;
+	public static int differ(Dater dater1, Dater dater2, Type type) {
+		int days = differ(dater1, dater2);
+		Logger.i("differ", days);
 		switch (type) {
 		case YEAR:
-			return Double.parseDouble(new DecimalFormat("0.0").format(days));
+			return Integer.parseInt(new DecimalFormat("0.0").format(days));
 		case MONTH:
-			return (int) days / 12;
+			return days / 30;
 		case DAY:
-			return (int) days;
+			return days;
 		}
 		return -1;
 	}
@@ -393,6 +391,11 @@ public class Dater {
 		setYear(year);
 		setMonth(month);
 		setDay(day);
+	}
+
+	public void setDater(Dater dater) {
+		setDater(dater.getDaterYear(), dater.getDaterMonth(),
+				dater.getDaterDay());
 	}
 
 	/**
@@ -616,7 +619,7 @@ public class Dater {
 	 * @return 23：59：59 e.g.
 	 */
 	public static String timerFormat(int hour, int minute) {
-		return String.format(TIMER_FORMAT, hour, minute);
+		return String.format(Locale.getDefault(), TIMER_FORMAT, hour, minute);
 	}
 
 	public int getDaterYear() {

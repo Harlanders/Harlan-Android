@@ -2,7 +2,7 @@ package com.harlan.libs.ui.utils;
 
 import android.util.TypedValue;
 
-import com.harlan.libs.core.Harlan;
+import com.harlan.libs.core.ApplicationManager;
 
 public class DensityUtil {
 	private DensityUtil() {
@@ -17,7 +17,7 @@ public class DensityUtil {
 	 */
 	public static int dp2px(float dpVal) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-				dpVal, Harlan.getContext().getResources().getDisplayMetrics());
+				dpVal, ApplicationManager.getContext().getResources().getDisplayMetrics());
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class DensityUtil {
 	 */
 	public static int sp2px(float spVal) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-				spVal, Harlan.getContext().getResources().getDisplayMetrics());
+				spVal, ApplicationManager.getContext().getResources().getDisplayMetrics());
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class DensityUtil {
 	 * @return
 	 */
 	public static float px2dp(float pxVal) {
-		final float scale = Harlan.getContext().getResources()
+		final float scale = ApplicationManager.getContext().getResources()
 				.getDisplayMetrics().density;
 		return (pxVal / scale);
 	}
@@ -53,7 +53,7 @@ public class DensityUtil {
 	 * @return
 	 */
 	public static float px2sp(float pxVal) {
-		return (pxVal / Harlan.getContext().getResources().getDisplayMetrics().scaledDensity);
+		return (pxVal / ApplicationManager.getContext().getResources().getDisplayMetrics().scaledDensity);
 	}
 
 }

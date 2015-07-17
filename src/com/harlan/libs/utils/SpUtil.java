@@ -3,7 +3,7 @@ package com.harlan.libs.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.harlan.libs.core.Harlan;
+import com.harlan.libs.core.ApplicationManager;
 
 /**
  * Ealisy use SharedPreferences
@@ -12,8 +12,8 @@ import com.harlan.libs.core.Harlan;
  *
  */
 public class SpUtil {
-	private static SharedPreferences sp = Harlan.getContext()
-			.getSharedPreferences(Harlan.getAppName(), Context.MODE_PRIVATE);
+	private static SharedPreferences sp = ApplicationManager.getContext()
+			.getSharedPreferences(ApplicationManager.getAppName(), Context.MODE_PRIVATE);
 	private static SharedPreferences.Editor editor = sp.edit();
 
 	public static void saveString(String key, String value) {

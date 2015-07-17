@@ -5,11 +5,13 @@ import android.content.res.Resources;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -111,6 +113,16 @@ public class ViewFinder {
 	 * @return image view
 	 */
 	public ImageView imageView(final int id) {
+		return find(id);
+	}
+
+	public EditText editText(final int id) {
+		return find(id);
+	}
+
+	public EditText editText(final int id, TextWatcher watcher) {
+		EditText et = find(id);
+		et.addTextChangedListener(watcher);
 		return find(id);
 	}
 

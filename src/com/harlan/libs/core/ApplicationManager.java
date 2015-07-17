@@ -7,7 +7,7 @@ import android.content.Context;
  * 
  * @note 这里应该使用构造者模式
  */
-public class Harlan {
+public class ApplicationManager {
 
 	/**
 	 * Application Context
@@ -28,10 +28,10 @@ public class Harlan {
 	}
 
 	public static void init(Context context) {
-		Harlan.context = context;
+		ApplicationManager.context = context;
 	}
 
 	public static void setAppName(String appName) {
-		Harlan.appName = appName;
+		ApplicationManager.appName = appName;
 	}
 }
