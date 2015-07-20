@@ -1,6 +1,5 @@
 package com.harlan.libs.utils;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -269,7 +268,7 @@ public class Dater {
 		Logger.i("differ", days);
 		switch (type) {
 		case YEAR:
-			return Integer.parseInt(new DecimalFormat("0.0").format(days));
+			return days / 30 / 12;
 		case MONTH:
 			return days / 30;
 		case DAY:
@@ -305,6 +304,30 @@ public class Dater {
 		long millis = Math.abs(dater1Millis - dater2Millis);
 		int days = (int) (millis / 1000 / 3600 / 24);
 		return days;
+	}
+
+	public static String differ2(Dater dater1, Dater dater2) {
+		long dater1Millis = getMillis(dater1);
+		long dater2Millis = getMillis(dater2);
+		long millis = Math.abs(dater1Millis - dater2Millis);
+		int days = (int) (millis / 1000 / 3600 / 24);
+
+		StringBuilder date = new StringBuilder();
+		int year, month;
+		if (days >= 365) {
+			year = days / 365;
+			days %= 365;
+			date.append(year + "年");
+		}
+		if (days > 30) {
+			month = days / 30;
+			days %= 30;
+			date.append(month + "月");
+		}
+		if (days > 0) {
+			date.append(days + "日");
+		}
+		return date.toString();
 	}
 
 	/**
