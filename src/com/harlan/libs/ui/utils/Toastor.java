@@ -1,9 +1,9 @@
 package com.harlan.libs.ui.utils;
 
-import com.harlan.libs.utils.Logger;
-
 import android.content.Context;
 import android.widget.Toast;
+
+import com.harlan.libs.utils.Logger;
 
 /**
  * Toast Manager
@@ -49,4 +49,9 @@ public class Toastor {
 		show(context, "测试", Toast.LENGTH_SHORT);
 	}
 
+	public static void dismiss() {
+		if (toast != null) {
+			toast.cancel();
+		}
+	}
 }

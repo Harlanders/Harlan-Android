@@ -198,6 +198,7 @@ public class ViewFinder {
 	 * @return
 	 * @return view registered with listener
 	 */
+	@SuppressWarnings("unchecked")
 	public <V extends View> V onClick(final int id,
 			final OnClickListener listener) {
 		View clickable = find(id);

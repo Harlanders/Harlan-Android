@@ -1,10 +1,10 @@
 package com.harlan.libs.ui.utils;
 
-import com.harlan.libs.utils.Logger;
-
 import android.text.Html;
 import android.text.Spanned;
 import android.widget.TextView;
+
+import com.harlan.libs.utils.Logger;
 
 /**
  * Ealisy use TextView,if <b>TextView</b> or <b>Text</b> is null,it will output
@@ -36,14 +36,14 @@ public class TextViewUtil {
 	 * @param suffix
 	 *            后缀
 	 */
-	public static void setText(TextView tv, Object text, String color,
-			String prefix, String suffix) {
+	public static void setText(TextView tv, String prefix, Object text,
+			String color, String suffix) {
 		if ((prefix == null) || (suffix == null)) {
 			Logger.i("prefix or suffix cannon be null");
 			return;
 		}
-		Spanned s = Html.fromHtml("(" + prefix + "<font color=\"" + color
-				+ "\">" + text.toString() + "</font>" + suffix + ")");
+		Spanned s = Html.fromHtml(prefix + "<font color=\"" + color + "\">"
+				+ text.toString() + "</font>" + suffix);
 		setText(tv, s);
 	}
 
