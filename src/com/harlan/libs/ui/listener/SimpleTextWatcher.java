@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.listener.EditText;
+package com.harlan.libs.ui.listener;
 
 import android.text.Editable;
 import android.text.TextWatcher;

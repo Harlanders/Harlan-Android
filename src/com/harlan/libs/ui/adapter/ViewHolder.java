@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.adapter.ListView;
+package com.harlan.libs.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

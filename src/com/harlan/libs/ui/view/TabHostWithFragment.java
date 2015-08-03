@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.view.Fragment;
+package com.harlan.libs.ui.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

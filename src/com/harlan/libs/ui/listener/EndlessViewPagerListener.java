@@ -1,12 +1,12 @@
-package com.harlan.libs.ui.listener.ViewPager;
+package com.harlan.libs.ui.listener;
 
 import java.util.List;
 
 import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
 import android.view.View;
 
-import com.harlan.libs.ui.adapter.ViewPager.EndlessPagerAdapter;
-import com.harlan.libs.ui.view.ViewPager.EndlessViewPager;
+import com.harlan.libs.ui.adapter.EndlessPagerAdapter;
+import com.harlan.libs.ui.view.EndlessViewPager;
 
 /**
  * 无限滚动ViewPager的页面变化监听器

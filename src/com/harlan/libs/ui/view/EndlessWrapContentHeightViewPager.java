@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.view.ViewPager;
+package com.harlan.libs.ui.view;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

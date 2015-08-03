@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.adapter.ListView;
+package com.harlan.libs.ui.adapter;
 
 import java.util.List;
 

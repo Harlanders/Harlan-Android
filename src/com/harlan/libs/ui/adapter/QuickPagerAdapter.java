@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.adapter.ViewPager;
+package com.harlan.libs.ui.adapter;
 
 import java.util.List;
 

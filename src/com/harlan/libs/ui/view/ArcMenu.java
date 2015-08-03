@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.ViewGroup;
+package com.harlan.libs.ui.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.harlan.libs.ui.view.GridView;
+package com.harlan.libs.ui.view;
 
 import android.widget.GridView;
 
