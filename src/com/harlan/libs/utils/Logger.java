@@ -95,4 +95,11 @@ public final class Logger {
 			Log.v(getTag(), msgName + " = " + msg.toString());
 		}
 	}
+
+	public static void line() {
+		if (DEBUG) {
+			Log.v(getTag(),
+					"——————————————————————————————————————————————————————————————————");
+		}
+	}
 }

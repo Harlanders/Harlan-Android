@@ -1,6 +1,5 @@
 package com.harlan.libs.utils;
 
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -20,6 +19,19 @@ public class Dater {
 	public enum DaterType {
 		TIMER
 	}
+
+	/**
+	 * 大于
+	 */
+	public static final int COMPARE_MORETHAN = 1;
+	/**
+	 * 等于
+	 */
+	public static final int COMPARE_EQUAL = 2;
+	/**
+	 * 小于
+	 */
+	public static final int COMPARE_LESSTHAN = 3;
 
 	private int year;
 	private int month;
@@ -213,7 +225,7 @@ public class Dater {
 	 */
 	public static Dater getOffsetDater(int year, int month, int day,
 			int offset, Type Type) {
-		GregorianCalendar gc = new GregorianCalendar(year, month, day);
+		GregorianCalendar gc = new GregorianCalendar(year, month - 1, day);
 		switch (Type) {
 		case YEAR:
 			gc.add(GregorianCalendar.YEAR, offset);
@@ -226,7 +238,8 @@ public class Dater {
 			break;
 		}
 		return new Dater(gc.get(GregorianCalendar.YEAR),
-				gc.get(GregorianCalendar.MONTH), gc.get(GregorianCalendar.DATE));
+				gc.get(GregorianCalendar.MONTH) + 1,
+				gc.get(GregorianCalendar.DATE));
 	}
 
 	public static Dater getOffsetDater(Dater dater, int offset, Type Type) {
@@ -235,12 +248,14 @@ public class Dater {
 	}
 
 	/**
-	 * 比较两个日期，dater2小于或等于dater1.返回false，反之则反；
+	 * 比较两个日期，dater2小于或等于dater1.返回false，反之则反； see{@link #compare2(Dater, Dater)}
+	 * and {@link #equals(Object)}
 	 * 
 	 * @param dater1
 	 * @param dater2
 	 * @return
 	 */
+	@Deprecated
 	public static boolean compare(Dater dater1, Dater dater2) {
 		if (dater2.getDaterYear() < dater1.getDaterYear()) {
 			return false;
@@ -259,22 +274,29 @@ public class Dater {
 	}
 
 	/**
-	 * 根据类型计算两个日期差值
+	 * 如果dater1大于dater2,则返回1,如果等于返回2，小于返回3
 	 * 
+	 * 
+	 * @param dater1
+	 * @param dater2
 	 * @return
 	 */
-	public static int differ(Dater dater1, Dater dater2, Type type) {
-		int days = differ(dater1, dater2);
-		Logger.i("differ", days);
-		switch (type) {
-		case YEAR:
-			return days / 30 / 12;
-		case MONTH:
-			return days / 30;
-		case DAY:
-			return days;
+	public static int compare2(Dater dater1, Dater dater2) {
+
+		if (dater1.getDaterYear() > dater2.getDaterYear()) {
+			return COMPARE_MORETHAN;
+		} else if (dater1.getDaterYear() == dater2.getDaterYear()) {
+			if (dater1.getDaterMonth() > dater2.getDaterMonth()) {
+				return COMPARE_MORETHAN;
+			} else if (dater1.getDaterMonth() == dater2.getDaterMonth()) {
+				if (dater1.getDaterDay() > dater2.getDaterDay()) {
+					return COMPARE_MORETHAN;
+				} else if (dater1.getDaterDay() == dater2.getDaterDay()) {
+					return COMPARE_EQUAL;
+				}
+			}
 		}
-		return -1;
+		return COMPARE_LESSTHAN;
 	}
 
 	/**
@@ -291,6 +313,40 @@ public class Dater {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * 根据类型计算两个日期差值
+	 * 
+	 * @return
+	 */
+	public static int differ(Dater dater1, Dater dater2, Type type) {
+		int days = differ(dater1, dater2);
+		switch (type) {
+		case YEAR:
+			return days / 30 / 12;
+		case MONTH:
+			return days / 30;
+		case DAY:
+			return days;
+		}
+		return -1;
+	}
+
+	/**
+	 * 
+	 * @param format
+	 *            "%04d年%02d月第%02d周"
+	 * @return
+	 */
+	public String getYMW(String format) {
+		GregorianCalendar gc = new GregorianCalendar(getDaterYear(),
+				getDaterMonth() - 1, getDaterDay());
+		int week_of_month = gc.get(Calendar.WEEK_OF_MONTH);
+		String ymw = String.format(Locale.getDefault(), format, getDaterYear(),
+				getDaterMonth(), week_of_month);
+		return ymw;
+
 	}
 
 	/**
@@ -381,7 +437,6 @@ public class Dater {
 		gc.add(Calendar.WEEK_OF_YEAR, offset);
 		setDater(gc.get(Calendar.YEAR), gc.get(Calendar.MONTH) + 1,
 				gc.get(Calendar.DATE));
-		Logger.i("addWeek", year, month, day);
 		return this;
 	}
 
@@ -516,7 +571,6 @@ public class Dater {
 			gc.add(Calendar.DAY_OF_MONTH, 1);
 			days[i] = gc.get(Calendar.DAY_OF_MONTH);
 		}
-		Logger.i(Arrays.toString(days));
 		return days;
 	}
 
