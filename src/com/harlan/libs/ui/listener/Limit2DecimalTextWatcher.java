@@ -12,6 +12,10 @@ public class Limit2DecimalTextWatcher extends SimpleTextWatcher {
 		this.et = et;
 	}
 
+	public void onLimit2DecimalChanged(CharSequence s, int start, int before,
+			int count) {
+	};
+
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		if (s.toString().contains(".")) {
@@ -33,5 +37,7 @@ public class Limit2DecimalTextWatcher extends SimpleTextWatcher {
 				return;
 			}
 		}
+
+		onLimit2DecimalChanged(s, start, before, count);
 	}
 }

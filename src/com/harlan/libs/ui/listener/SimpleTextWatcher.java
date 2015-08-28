@@ -3,7 +3,7 @@ package com.harlan.libs.ui.listener;
 import android.text.Editable;
 import android.text.TextWatcher;
 
-public class SimpleTextWatcher implements TextWatcher {
+public abstract class SimpleTextWatcher implements TextWatcher {
 
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,

@@ -27,11 +27,11 @@ public class Dater {
 	/**
 	 * 等于
 	 */
-	public static final int COMPARE_EQUAL = 2;
+	public static final int COMPARE_EQUAL = 0;
 	/**
 	 * 小于
 	 */
-	public static final int COMPARE_LESSTHAN = 3;
+	public static final int COMPARE_LESSTHAN = -1;
 
 	private int year;
 	private int month;
@@ -274,7 +274,7 @@ public class Dater {
 	}
 
 	/**
-	 * 如果dater1大于dater2,则返回1,如果等于返回2，小于返回3
+	 * 如果dater1大于dater2,则返回1,如果等于返回0，小于返回-1
 	 * 
 	 * 
 	 * @param dater1
@@ -354,6 +354,7 @@ public class Dater {
 	 * 
 	 * @return
 	 */
+	@Deprecated
 	public static int differ(Dater dater1, Dater dater2) {
 		long dater1Millis = getMillis(dater1);
 		long dater2Millis = getMillis(dater2);
@@ -362,6 +363,7 @@ public class Dater {
 		return days;
 	}
 
+	@Deprecated
 	public static String differ2(Dater dater1, Dater dater2) {
 		long dater1Millis = getMillis(dater1);
 		long dater2Millis = getMillis(dater2);

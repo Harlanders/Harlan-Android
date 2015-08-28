@@ -9,7 +9,7 @@ import android.view.MotionEvent;
  * @author Administrator
  *
  */
-public class SimpleOnGestureListener implements OnGestureListener {
+public abstract class SimpleOnGestureListener implements OnGestureListener {
 
 	@Override
 	public boolean onDown(MotionEvent e) {

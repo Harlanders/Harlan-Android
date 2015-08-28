@@ -4,7 +4,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class SimpleOnItemSelectedListener implements OnItemSelectedListener {
+public abstract class SimpleOnItemSelectedListener implements
+		OnItemSelectedListener {
 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
