@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 import com.harlan.libs.ui.listener.SimpleOnGestureListener;
-import com.harlan.libs.utils.Logger;
 
 public class ElasticScrollView extends LinearLayout {
 
@@ -42,14 +41,12 @@ public class ElasticScrollView extends LinearLayout {
 	}
 
 	public void smoothlyScrollTo(int x, int y) {
-		Logger.i("smoothlyScrollTo");
 		int offsetX = x - scroller.getFinalX();
 		int offsetY = y - scroller.getFinalY();
 		smoothlyScrollBy(offsetX, offsetY);
 	}
 
 	public void smoothlyScrollBy(int x, int y) {
-		Logger.i("smoothlyScrollBy");
 		scroller.startScroll(scroller.getFinalX(), scroller.getFinalY(), x, y,
 				1500);
 		invalidate();
@@ -57,7 +54,6 @@ public class ElasticScrollView extends LinearLayout {
 
 	@Override
 	public void computeScroll() {
-		Logger.i("computeScroll");
 		if (scroller.computeScrollOffset()) {
 			scrollTo(scroller.getCurrX(), scroller.getCurrY());
 			invalidate();
@@ -66,7 +62,6 @@ public class ElasticScrollView extends LinearLayout {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		Logger.i("onTouchEvent");
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_UP:
 			smoothlyScrollTo(0, 0);

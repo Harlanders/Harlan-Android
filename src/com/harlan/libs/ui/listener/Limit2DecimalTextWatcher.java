@@ -16,6 +16,12 @@ public class Limit2DecimalTextWatcher extends SimpleTextWatcher {
 			int count) {
 	};
 
+	/**
+	 * Every limited Condition that you can do something,use this method.
+	 */
+	public void onEveryLimit2DecimalChanged() {
+	};
+
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		if (s.toString().contains(".")) {
@@ -23,21 +29,25 @@ public class Limit2DecimalTextWatcher extends SimpleTextWatcher {
 				s = s.toString().subSequence(0, s.toString().indexOf(".") + 3);
 				et.setText(s);
 				et.setSelection(s.length());
+				onEveryLimit2DecimalChanged();
 			}
 		}
 		if (s.toString().trim().substring(0).equals(".")) {
 			s = "0" + s;
 			et.setText(s);
 			et.setSelection(2);
+			onEveryLimit2DecimalChanged();
 		}
 		if (s.toString().startsWith("0") && (s.toString().trim().length() > 1)) {
 			if (!s.toString().substring(1, 2).equals(".")) {
 				et.setText(s.subSequence(0, 1));
 				et.setSelection(1);
+				onEveryLimit2DecimalChanged();
 				return;
 			}
 		}
 
+		onEveryLimit2DecimalChanged();
 		onLimit2DecimalChanged(s, start, before, count);
 	}
 }

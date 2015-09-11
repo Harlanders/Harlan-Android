@@ -29,7 +29,7 @@ public class Caller {
 	 * @param phone
 	 */
 	public static void toSmsUI(Context context, String phone) {
-		Uri sms = Uri.parse("smsto://" + phone);
+		Uri sms = Uri.parse("smsto:" + phone);
 		Intent intent = new Intent(android.content.Intent.ACTION_SENDTO, sms);
 		context.startActivity(intent);
 	}

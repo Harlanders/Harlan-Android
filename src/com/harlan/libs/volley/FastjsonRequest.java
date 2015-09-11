@@ -12,7 +12,6 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
-import com.harlan.libs.utils.Logger;
 
 public class FastjsonRequest<T> extends JsonRequest<T> {
 
@@ -36,7 +35,7 @@ public class FastjsonRequest<T> extends JsonRequest<T> {
 		try {
 			String json = new String(response.data,
 					HttpHeaderParser.parseCharset(response.headers));
-			Logger.i(json);
+			// Logger.i(json);
 			return Response.success(JSON.parseObject(json, clz),
 					HttpHeaderParser.parseCacheHeaders(response));
 		} catch (UnsupportedEncodingException e) {

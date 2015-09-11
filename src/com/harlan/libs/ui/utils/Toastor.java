@@ -3,8 +3,6 @@ package com.harlan.libs.ui.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.harlan.libs.utils.Logger;
-
 /**
  * Toast Manager
  * 
@@ -24,7 +22,7 @@ public class Toastor {
 	 */
 	private static void show(Context context, Object obj, int duration) {
 		if (obj == null) {
-			Logger.w("the obj cannot null");
+			// Logger.w("the obj cannot null");
 			return;
 		}
 

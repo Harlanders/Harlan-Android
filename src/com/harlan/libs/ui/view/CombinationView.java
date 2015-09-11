@@ -46,6 +46,9 @@ public abstract class CombinationView extends LinearLayout {
 
 	/**
 	 * 获取参数
+	 * <p>
+	 * If your override method which is {@link #getStyleable()} returns null,do
+	 * not use this method,it will throw a NullPointException.
 	 */
 	protected abstract void conver(TypedArray a);
 

@@ -12,7 +12,6 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.Gson;
-import com.harlan.libs.utils.Logger;
 
 public class GsonRequest<T> extends JsonRequest<T> {
 
@@ -36,7 +35,7 @@ public class GsonRequest<T> extends JsonRequest<T> {
 		try {
 			String json = new String(response.data,
 					HttpHeaderParser.parseCharset(response.headers));
-			Logger.i(json);
+			// Logger.i(json);
 			return Response.success(new Gson().fromJson(json, clz),
 					HttpHeaderParser.parseCacheHeaders(response));
 		} catch (UnsupportedEncodingException e) {

@@ -10,11 +10,11 @@ import com.harlan.libs.BuildConfig;
  * @author Harlan
  * @data 2015年5月30日 18:42:45
  */
-public final class Logger {
+public final class L {
 
 	private static boolean DEBUG = BuildConfig.DEBUG;
 
-	private Logger() {
+	private L() {
 	}
 
 	private static String getTag() {

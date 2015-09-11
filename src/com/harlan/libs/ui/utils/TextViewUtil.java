@@ -4,8 +4,6 @@ import android.text.Html;
 import android.text.Spanned;
 import android.widget.TextView;
 
-import com.harlan.libs.utils.Logger;
-
 /**
  * Ealisy use TextView,if <b>TextView</b> or <b>Text</b> is null,it will output
  * log msg
@@ -65,7 +63,6 @@ public class TextViewUtil {
 
 	private static boolean check(TextView tv, Object text) {
 		if ((tv == null) || (text == null)) {
-			Logger.i(tv.toString() + "or text cannont be null");
 			return false;
 		}
 		return true;

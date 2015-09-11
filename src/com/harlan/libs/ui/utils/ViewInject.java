@@ -5,8 +5,6 @@ import java.lang.reflect.Method;
 
 import android.app.Activity;
 
-import com.harlan.libs.utils.Logger;
-
 public class ViewInject {
 	public static final String SETCONTENTVIEW = "setContentView";
 	public static final String FINDVIEWBYID = "findViewById";
@@ -27,7 +25,7 @@ public class ViewInject {
 		for (Field field : fields) {
 			FindViewById findViewById = field.getAnnotation(FindViewById.class);
 			if (findViewById != null) {
-				Logger.i("findViewById != null");
+				// Logger.i("findViewById != null");
 				int id = findViewById.id();
 				if (id > 0) {
 					try {
@@ -41,7 +39,7 @@ public class ViewInject {
 					}
 				}
 			} else {
-				Logger.i("findViewById == null");
+				// Logger.i("findViewById == null");
 			}
 		}
 	}
@@ -55,7 +53,7 @@ public class ViewInject {
 		Class<? extends Activity> clz = activity.getClass();
 		SetContentView setContentView = clz.getAnnotation(SetContentView.class);
 		if (setContentView != null) {
-			Logger.i("setContentView != null");
+			// Logger.i("setContentView != null");
 			int layoutId = setContentView.layoutId();
 			try {
 				Method mSetContentView = clz.getMethod(SETCONTENTVIEW,
@@ -66,7 +64,7 @@ public class ViewInject {
 				e.printStackTrace();
 			}
 		} else {
-			Logger.i("setContentView == null");
+			// Logger.i("setContentView == null");
 		}
 	}
 }
