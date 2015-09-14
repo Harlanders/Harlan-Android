@@ -151,7 +151,6 @@ public final class L {
 	/**
 	 * Collection
 	 */
-
 	private static String collection(Object obj) {
 		final String simpleName = obj.getClass().getSimpleName();
 		Collection collection = (Collection) obj;
@@ -175,7 +174,6 @@ public final class L {
 	/**
 	 * Array
 	 */
-
 	private static String array(Object obj) {
 		final String simpleName = obj.getClass().getSimpleName();
 		String msg = "Temporarily not support more than two dimensional Array!";
