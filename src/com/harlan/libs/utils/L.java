@@ -72,7 +72,7 @@ public final class L {
 	}
 
 	/**
-	 * Generates for clickable link.
+	 * Generates a clickable link.
 	 */
 	private static String callMethodAndLine() {
 		StackTraceElement thisMethodStack = (new Exception()).getStackTrace()[4];
