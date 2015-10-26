@@ -36,10 +36,6 @@ public class TextViewUtil {
 	 */
 	public static void setText(TextView tv, String prefix, Object text,
 			String color, String suffix) {
-		// if ((prefix == null) || (suffix == null)) {
-		// Logger.i("prefix or suffix cannon be null");
-		// return;
-		// }
 		prefix = prefix == null ? "" : prefix;
 		suffix = suffix == null ? "" : suffix;
 		Spanned s = Html.fromHtml(prefix + "<font color=\"" + color + "\">"

@@ -145,7 +145,8 @@ public final class L {
 	private static String obj(Object obj) {
 		final String simpleName = obj.getClass().getSimpleName();
 		// return simpleName + " { " + obj.toString() + " }";
-		return simpleName + " : " + obj.toString();
+		// return simpleName + " : " + obj.toString();
+		return obj.toString();
 	}
 
 	/**
@@ -210,16 +211,16 @@ public final class L {
 			if (json.startsWith("{")) {
 				JSONObject jsonObject = new JSONObject(json);
 				String message = jsonObject.toString(4);
-				log(Log.INFO, true, message);
+				log(Log.DEBUG, true, "Json : " + message);
 				return;
 			}
 			if (json.startsWith("[")) {
 				JSONArray jsonArray = new JSONArray(json);
 				String message = jsonArray.toString(4);
-				log(Log.INFO, true, message);
+				log(Log.DEBUG, true, "Json : " + message);
 			}
 		} catch (JSONException e) {
-			log(Log.INFO, true, e.getCause().getMessage() + "\n" + json);
+			log(Log.DEBUG, true, e.getCause().getMessage() + "\n" + json);
 		}
 	}
 
@@ -260,7 +261,7 @@ public final class L {
 		return sb.toString();
 	}
 
-	private static void log(int log_id, Boolean useL, Object... msgs) {
+	private static void log(int log_id, boolean useL, Object... msgs) {
 		if (DEBUG) {
 			String tag = getTag();
 			String msg;

@@ -11,13 +11,13 @@ import android.view.MotionEvent;
  * @author Administrator
  *
  */
-public class NoScrollViewPager extends ViewPager {
+public class UnScrollViewPager extends ViewPager {
 
-	public NoScrollViewPager(Context context) {
+	public UnScrollViewPager(Context context) {
 		super(context);
 	}
 
-	public NoScrollViewPager(Context context, AttributeSet attrs) {
+	public UnScrollViewPager(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 

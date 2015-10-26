@@ -5,8 +5,8 @@ import android.widget.GridView;
 /**
  * 无法滑动的GridView
  */
-public class NoScrollGridView extends GridView {
-	public NoScrollGridView(android.content.Context context,
+public class UnScrollGridView extends GridView {
+	public UnScrollGridView(android.content.Context context,
 			android.util.AttributeSet attrs) {
 		super(context, attrs);
 	}

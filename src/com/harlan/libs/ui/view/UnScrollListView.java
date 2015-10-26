@@ -7,16 +7,16 @@ import android.widget.ListView;
 /**
  * 无法滑动的ListView
  */
-public class NoScrollListView extends ListView {
-	public NoScrollListView(Context context) {
+public class UnScrollListView extends ListView {
+	public UnScrollListView(Context context) {
 		super(context);
 	}
 
-	public NoScrollListView(Context context, AttributeSet attrs) {
+	public UnScrollListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public NoScrollListView(Context context, AttributeSet attrs, int defStyle) {
+	public UnScrollListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
