@@ -84,6 +84,10 @@
     <style name="ll_w_match_h_0_vertical" parent="@style/w_match_h_0">
         <item name="android:orientation">vertical</item>
     </style>
+    
+    <style name="ll_w_match_h_0_horizontal" parent="@style/w_match_h_0">
+        <item name="android:orientation">horizontal</item>
+    </style>
 
     <style name="line_vertical">
         <item name="android:layout_height">1px</item>
