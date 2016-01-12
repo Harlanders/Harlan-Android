@@ -9,11 +9,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.harlan.libs.BuildConfig;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
-
-import com.harlan.libs.BuildConfig;
 
 /**
  * Log Manager,自动获取Tag
@@ -44,7 +44,7 @@ public final class L {
 	private static final String LINE = "─────────────────────────────────────────────────────────────────────────────────────────────";
 	private static final String NEW_LINE = "\n";
 	private static final String AT = "at ";
-	private static final String POINT = "▪";
+	private static final String POINT = "▪ ";
 	private static final String BLANK = "  ";
 
 	/**
@@ -77,7 +77,9 @@ public final class L {
 	private static String callMethodAndLine() {
 		StackTraceElement thisMethodStack = (new Exception()).getStackTrace()[4];
 		StringBuilder sb = new StringBuilder();
-		sb.append(AT).append(thisMethodStack.getClassName() + ".")
+		sb
+.append(AT)
+				.append(thisMethodStack.getClassName() + ".")
 				.append(thisMethodStack.getMethodName())
 				.append("(" + thisMethodStack.getFileName())
 				.append(":" + thisMethodStack.getLineNumber() + ")  ");
